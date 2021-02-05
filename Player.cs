@@ -68,13 +68,6 @@ public class Player : MonoBehaviour
                 playerRB.velocity = new Vector2(playerRB.velocity.x, playerRB.velocity.y * jumpVelocityCut);
             }
         }
-
-        
-
-        //if (Input.GetKeyDown("space") && IsGrounded()) // TODO: jump with different strength depending on space key down duration
-        //{
-        //    playerRB.AddForce(transform.up * thrust, ForceMode2D.Impulse);
-        //}
     }
 
     private bool IsGrounded()
@@ -111,6 +104,15 @@ public class Player : MonoBehaviour
             GameObject cam = GameObject.Find("Main Camera");
             cam.transform.SetParent(null);
             Debug.Log("Victory!");
+            Destroy(gameObject);
+        }
+
+        if (col.gameObject.tag == "Enemy")
+        {
+            GameObject cam = GameObject.Find("Main Camera");
+            cam.transform.SetParent(null);
+            Debug.Log("Defeat!");
+            //Destroy(col.gameObject);
             Destroy(gameObject);
         }
     }
